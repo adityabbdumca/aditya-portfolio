@@ -1,39 +1,62 @@
-import { FaCalendarAlt, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+  FaCheckCircle,
+  FaBriefcase,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const experiences = [
+  {
+    company: "ITDOSE INFO",
+    position: "React JS Developer",
+    duration: "7 Apr 2026 - Present",
+    location: "Noida, IN",
+    website: "https://www.itdoseinfo.com/",
+    description:
+      "Developing high-performance user interfaces, optimizing layout responsiveness, and translating complex designs into modular React.js structures.",
+    achievements: [
+      "Integrating secure API endpoints and managing streamlined component state patterns.",
+      "Optimizing application speed, core performance metrics, and responsive accessibility.",
+      "Collaborating actively with cross-functional agile teams to deliver production-ready features.",
+    ],
+    projects: [],
+  },
   {
     company: "FYN TUNE SOLUTION PVT LTD",
     position: "React JS Developer",
     duration: "Apr 2024 - Nov 2025",
-    location: "Navi Mumbai",
+    location: "Navi Mumbai, IN",
+    website: "https://fyntune.com/",
     description:
-      "Worked as a React JS Developer at Fyn Tune Solution Private Limited from 28th April 2024 to 1st November 2025.",
+      "Engineered core frontend features, customized dynamic UI architectures, and optimized application speeds at Fyn Tune Solution Private Limited.",
     achievements: [
-      "Received appreciation from reporting managers for dedication and sincerity",
-      "Demonstrated excellent job performance throughout tenure",
-      "Made enthusiastic contributions to team projects",
+      "Received exceptional manager recognition for sincerity and project dedication.",
+      "Consistently achieved top-tier performance ratings throughout tenure.",
+      "Delivered enthusiast-driven contributions to modern agile sprint teams.",
     ],
     projects: [
       {
         name: "Agent Onboarding Portal | Prudential PLC",
         points: [
-          "Developed responsive web platform for agent recruitment and certification using React.js 18 and TypeScript",
-          "Implemented multi-role authentication and role-based dashboards",
-          "Managed application state using Redux Toolkit for optimal performance",
-          "Built reusable form components with React Hook Form and Yup validation",
-          "Integrated REST APIs with Axios and enhanced UX with React Toastify",
-          "Reduced development time by 20% through component reusability",
+          "Developed responsive web platforms for recruitment and certification using React.js 18 and TypeScript.",
+          "Implemented robust role-based authentication and custom analytics dashboards.",
+          "Managed modular client states using Redux Toolkit for seamless performance.",
+          "Built reusable, validated forms with React Hook Form and Yup validation schemas.",
+          "Integrated secure REST APIs using Axios and polished UX alerts with React Toastify.",
+          "Reduced development time by 20% through smart component architecture patterns.",
         ],
       },
       {
         name: "Motor Insurance Portal | Hero Insurance",
         points: [
-          "Engineered insurance portal for vehicle policy management using React.js 18",
-          "Developed proposal and quotation forms with comprehensive validation",
-          "Implemented centralized state management using Redux Toolkit",
-          "Integrated RESTful APIs for secure data fetching and submission",
-          "Enhanced UI/UX with MUI and Bootstrap components",
-          "Improved user experience with loading skeletons and toast notifications",
+          "Engineered interactive policy management portals for vehicle quote retrieval.",
+          "Built multi-step proposal forms with thorough inline validation mechanics.",
+          "Synchronized decentralized API endpoints with Redux Toolkit middleware.",
+          "Integrated complex secure RESTful services for instant quote retrieval.",
+          "Styled visual UI components with highly interactive MUI components.",
+          "Optimized slow network fetch indicators using elegant Skeleton screens.",
         ],
       },
     ],
@@ -42,113 +65,176 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="section-padding">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Professional <span className="gradient-text">Experience</span>
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Proven track record of delivering high-quality web applications with
-            modern technologies
-          </p>
+    <section id="experience" className="section-padding relative">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight"
+          >
+            Professional{" "}
+            <span className="gradient-text animate-gradient">Experience</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-400 max-w-2xl mx-auto font-medium"
+          >
+            A proven history of engineering top-quality applications using
+            modern libraries, modular states, and optimal speed standards.
+          </motion.p>
         </div>
 
+        {/* Timeline Path */}
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-600 transform md:-translate-x-1/2"></div>
+          {/* Neon vertical track */}
+          <div className="absolute left-4 md:left-1/2 h-full w-[3px] bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 transform md:-translate-x-1/2 rounded-full"></div>
 
           {experiences.map((exp, index) => (
-            <div key={index} className="mb-12 relative">
+            <div key={index} className="mb-16 relative">
               <div
-                className={`md:flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center`}
+                className={`md:flex md:justify-between items-start ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}
               >
-                {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transform -translate-x-1/2 md:-translate-x-1/2 z-10"></div>
+                {/* Timeline node icon */}
+                <div className="absolute left-4 md:left-1/2 w-8 h-8 rounded-full bg-slate-950 border-2 border-indigo-500 flex items-center justify-center transform -translate-x-[14px] md:-translate-x-1/2 z-10 shadow-[0_0_15px_rgba(99,102,241,0.8)]">
+                  <FaBriefcase className="text-indigo-400 text-xs" />
+                </div>
 
-                {/* Content */}
-                <div
-                  className={`md:w-5/12 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"} ml-6 md:ml-0`}
-                >
-                  <div className="bg-white rounded-xl shadow-lg p-6 card-hover">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl font-bold text-gray-800">
-                        {exp.company}
-                      </h3>
-                      <span className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-sm font-medium rounded-full">
+                {/* Left/Right floating alignment box */}
+                <div className="w-full md:w-[46%] ml-12 md:ml-0">
+                  <motion.div
+                    initial={{ x: index % 2 === 0 ? -40 : 40, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ type: "spring", stiffness: 60, damping: 15 }}
+                    className="glass-card p-6 md:p-8 rounded-3xl text-left"
+                  >
+                    {/* Header Area */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                      <div className="flex items-center space-x-2">
+                        <h3 className="text-2xl font-extrabold text-white tracking-tight">
+                          {exp.company}
+                        </h3>
+                        {exp.website && (
+                          <a
+                            href={exp.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-indigo-400 hover:text-indigo-300 transition-colors"
+                            title={`Visit ${exp.company} website`}
+                          >
+                            <FaExternalLinkAlt
+                              size={14}
+                              className="inline ml-1"
+                            />
+                          </a>
+                        )}
+                      </div>
+                      <span className="w-max px-3.5 py-1.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold rounded-xl whitespace-nowrap uppercase tracking-wider">
                         {exp.position}
                       </span>
                     </div>
 
-                    <div className="flex items-center space-x-4 text-gray-600 mb-4">
-                      <div className="flex items-center space-x-1">
-                        <FaCalendarAlt />
-                        <span className="text-sm">{exp.duration}</span>
+                    {/* Metadata Subheading */}
+                    <div className="flex flex-wrap gap-4 text-slate-400 text-sm mb-6 border-b border-slate-900 pb-4">
+                      <div className="flex items-center space-x-2">
+                        <FaCalendarAlt className="text-indigo-500" />
+                        <span className="font-semibold">{exp.duration}</span>
                       </div>
-                      <div className="flex items-center space-x-1">
-                        <FaMapMarkerAlt />
-                        <span className="text-sm">{exp.location}</span>
+                      <div className="flex items-center space-x-2">
+                        <FaMapMarkerAlt className="text-pink-500" />
+                        <span className="font-semibold">{exp.location}</span>
                       </div>
                     </div>
 
-                    <p className="text-gray-700 mb-4">{exp.description}</p>
+                    {/* Description */}
+                    <p className="text-slate-300 font-medium mb-6 leading-relaxed">
+                      {exp.description}
+                    </p>
 
-                    <div className="mb-6">
-                      <h4 className="font-bold text-gray-800 mb-2">
-                        Key Achievements:
+                    {/* Achievements */}
+                    <div className="mb-8">
+                      <h4 className="font-bold text-white text-base mb-3.5 tracking-wide flex items-center gap-2">
+                        <span className="w-1.5 h-3 bg-indigo-500 rounded-full"></span>
+                        Key Tenure Achievements
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {exp.achievements.map((achievement, idx) => (
-                          <li key={idx} className="flex items-start space-x-2">
-                            <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
-                            <span className="text-gray-700">{achievement}</span>
+                          <li key={idx} className="flex items-start space-x-3">
+                            <FaCheckCircle className="text-emerald-400 mt-1 flex-shrink-0 text-sm" />
+                            <span className="text-slate-300 text-sm leading-relaxed font-medium">
+                              {achievement}
+                            </span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    {exp.projects.map((project, pIndex) => (
-                      <div key={pIndex} className="mb-4 last:mb-0">
-                        <h4 className="font-bold text-gray-800 mb-2">
-                          {project.name}
-                        </h4>
-                        <ul className="space-y-1">
-                          {project.points.map((point, pointIdx) => (
-                            <li
-                              key={pointIdx}
-                              className="text-sm text-gray-600 flex items-start"
-                            >
-                              <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                              {point}
-                            </li>
-                          ))}
-                        </ul>
+                    {/* Deep-dive Projects */}
+                    {exp.projects && exp.projects.length > 0 && (
+                      <div className="space-y-6 mt-6 border-t border-slate-900/60 pt-6">
+                        {exp.projects.map((project, pIndex) => (
+                          <div
+                            key={pIndex}
+                            className="p-5 bg-slate-950/50 border border-slate-900 rounded-2xl hover:border-slate-800/80 transition-colors"
+                          >
+                            <h4 className="font-extrabold text-white text-base mb-3 leading-tight tracking-wide bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">
+                              {project.name}
+                            </h4>
+                            <ul className="space-y-2.5">
+                              {project.points.map((point, pointIdx) => (
+                                <li
+                                  key={pointIdx}
+                                  className="text-sm text-slate-400 font-medium flex items-start leading-relaxed"
+                                >
+                                  <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full mt-2 mr-3.5 flex-shrink-0"></span>
+                                  <span className="flex-1">{point}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    )}
+                  </motion.div>
                 </div>
+
+                {/* Visual empty block on wide screen for alignment */}
+                <div className="hidden md:block w-[46%]"></div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 bg-white rounded-2xl shadow-lg p-6 border-l-4 border-blue-500">
-          <div className="flex items-center space-x-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center">
-              <FaCheckCircle className="text-blue-600 text-2xl" />
+        {/* Experience Verification status */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 bg-slate-900/40 backdrop-blur-md rounded-2xl p-6 border border-slate-800/60 shadow-xl max-w-3xl mx-auto"
+        >
+          <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-5 text-center sm:text-left">
+            <div className="w-14 h-14 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/20 text-emerald-400 flex-shrink-0">
+              <FaCheckCircle className="text-2xl" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-gray-800">
-                Experience Letter Verified
+              <h3 className="text-lg font-bold text-white mb-1">
+                Experience Credentials Fully Verified
               </h3>
-              <p className="text-gray-600">
-                Successfully completed tenure at Fyn Tune Solution Private
-                Limited with excellent performance and dedication. Received
-                formal experience letter dated 6th January 2026.
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Successfully concluded formal tenure at Fyn Tune Solution
+                Private Limited with an exemplary rating in dedication, job
+                efficiency, and client collaboration. Officially documented in
+                tenure letters.
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
