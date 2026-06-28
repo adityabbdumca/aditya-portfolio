@@ -75,7 +75,11 @@ const Hero = () => {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-7 py-3.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-[0_0_30px_rgba(99,102,241,0.25)] hover:shadow-[0_0_35px_rgba(99,102,241,0.45)] transition-all duration-300 flex items-center space-x-2.5 group cursor-pointer"
+                className="px-7 py-3.5 text-white font-bold rounded-xl transition-all duration-300 flex items-center space-x-2.5 group cursor-pointer"
+                style={{
+                  background: "linear-gradient(135deg, var(--accent-light), var(--accent-dark))",
+                  boxShadow: "0 0 30px var(--accent-glow)",
+                }}
               >
                 <span>Get In Touch</span>
                 <FaArrowRight className="group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -157,7 +161,11 @@ const Hero = () => {
               {/* Central Glowing Portrait Module */}
               <motion.div 
                 whileHover={{ scale: 1.03 }}
-                className="relative z-10 w-44 h-44 md:w-52 md:h-52 rounded-full p-[3px] bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-[0_0_50px_rgba(99,102,241,0.25)]"
+                className="relative z-10 w-44 h-44 md:w-52 md:h-52 rounded-full p-[3px]"
+                style={{
+                  background: "linear-gradient(135deg, var(--accent-light), var(--accent-primary), var(--accent-dark))",
+                  boxShadow: "0 0 50px var(--accent-glow)",
+                }}
               >
                 <div className="w-full h-full rounded-full bg-slate-950 p-2 relative group overflow-hidden">
                   

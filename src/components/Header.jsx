@@ -7,6 +7,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import ColorSwitch from "./ColorSwitch";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,29 +32,32 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl rounded-2xl border transition-all duration-500 ${
-        scrolled
-          ? "py-2 bg-slate-950/75 border-slate-800/80 shadow-[0_8px_30px_rgb(0,0,0,0.5)] backdrop-blur-md shadow-indigo-500/5"
-          : "py-4 bg-slate-950/40 border-white/5 backdrop-blur-md shadow-lg"
-      }`}
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl rounded-2xl border transition-all duration-500 ${scrolled
+        ? "py-2 bg-slate-950/75 border-slate-800/80 shadow-[0_8px_30px_rgb(0,0,0,0.5)] backdrop-blur-md shadow-indigo-500/5"
+        : "py-4 bg-slate-950/40 border-white/5 backdrop-blur-md shadow-lg"
+        }`}
     >
       <nav className="px-4 md:px-8">
         <div className="flex items-center justify-between">
           {/* Brand/Logo Area */}
           <div className="flex items-center space-x-3 group cursor-pointer">
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-500 group-hover:animate-pulse"></div>
-              <img
-                src="/images/aditya.png"
-                alt="Aditya Gautam"
-                className="relative w-10 h-10 md:w-11 md:h-11 rounded-full object-cover border border-white/10 shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-6"
+              <div
+                className="absolute -inset-1 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-500 group-hover:animate-pulse"
+                style={{ background: "linear-gradient(135deg, var(--accent-light), var(--accent-dark))" }}
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-base md:text-lg font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent group-hover:animate-gradient">
+              <span
+                className="text-base md:text-lg font-extrabold tracking-tight bg-clip-text text-transparent group-hover:animate-gradient"
+                style={{ backgroundImage: "linear-gradient(135deg, var(--accent-light), var(--accent-primary), var(--accent-dark))" }}
+              >
                 Aditya Gautam
               </span>
-              <span className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase group-hover:text-indigo-400 transition-colors">
+              <span
+                className="text-[10px] font-semibold tracking-wider uppercase transition-colors"
+                style={{ color: "var(--text-muted)" }}
+              >
                 React Developer
               </span>
             </div>
@@ -84,8 +88,11 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Social Links Panel */}
-          <div className="hidden md:flex items-center space-x-3 pl-4 border-l border-slate-800">
+          {/* Color Switch + Social Links Panel */}
+          <div className="hidden md:flex items-center space-x-2">
+            <ColorSwitch />
+            <div className="w-px h-6 bg-slate-800 mx-1" />
+          <div className="flex items-center space-x-3">
             {[
               {
                 href: "https://github.com/adityabbdumca",
@@ -122,6 +129,7 @@ const Header = () => {
                 </span>
               </motion.a>
             ))}
+          </div>
           </div>
 
           {/* Mobile Menu Action trigger */}
@@ -161,8 +169,8 @@ const Header = () => {
                   </motion.a>
                 ))}
 
-                {/* Mobile Social Action Buttons */}
-                <div className="flex justify-around pt-4 border-t border-slate-900/60">
+                {/* Mobile Social Action Buttons + Color Switch */}
+                <div className="flex justify-around items-center pt-4 border-t border-slate-900/60">
                   {[
                     {
                       href: "https://github.com/adityabbdumca",
@@ -191,6 +199,10 @@ const Header = () => {
                       <span className="text-[10px] font-medium">{social.label}</span>
                     </a>
                   ))}
+                  <div className="flex flex-col items-center space-y-1 p-2">
+                    <ColorSwitch />
+                    <span className="text-[10px] font-medium text-slate-400">Theme</span>
+                  </div>
                 </div>
               </div>
             </motion.div>

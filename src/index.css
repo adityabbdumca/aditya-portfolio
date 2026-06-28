@@ -1,30 +1,151 @@
 @import "tailwindcss";
 
+/* ─── CSS Variable Defaults (Indigo) ─────────────────────────── */
+:root {
+  --accent-primary: #6366f1;
+  --accent-light:   #818cf8;
+  --accent-dark:    #4338ca;
+  --accent-glow:    rgba(99, 102, 241, 0.35);
+  --accent-rgb:     99, 102, 241;
+
+  /* Dark mode surface tokens */
+  --bg-base:        #030712;
+  --bg-surface:     #0f172a;
+  --bg-card:        rgba(15, 23, 42, 0.45);
+  --border-subtle:  rgba(255, 255, 255, 0.06);
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+  --header-bg:      rgba(3, 7, 18, 0.75);
+  --card-hover-shadow: rgba(0,0,0,0.3);
+}
+
+/* ─── Light Mode Overrides ────────────────────────────────────── */
+.light-mode {
+  --bg-base:        #f8fafc;
+  --bg-surface:     #ffffff;
+  --bg-card:        rgba(255, 255, 255, 0.75);
+  --border-subtle:  rgba(0, 0, 0, 0.08);
+  --text-primary:   #0f172a;
+  --text-secondary: #334155;
+  --text-muted:     #64748b;
+  --header-bg:      rgba(248, 250, 252, 0.85);
+  --card-hover-shadow: rgba(0,0,0,0.08);
+}
+
+/* Apply token-based base styles */
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ─── Light Mode Global overrides ────────────────────────────── */
+.light-mode body {
+  background-color: var(--bg-base);
+}
+
+/* Header */
+.light-mode header {
+  background: var(--header-bg) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Text that should flip */
+.light-mode .text-slate-100,
+.light-mode .text-slate-200,
+.light-mode .text-slate-300 {
+  color: var(--text-secondary) !important;
+}
+.light-mode .text-slate-400,
+.light-mode .text-slate-500 {
+  color: var(--text-muted) !important;
+}
+.light-mode .text-white {
+  color: var(--text-primary) !important;
+}
+
+/* Card backgrounds */
+.light-mode .glass-card {
+  background: var(--bg-card) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06) !important;
+}
+.light-mode .glass-card:hover {
+  border-color: rgba(var(--accent-rgb), 0.3) !important;
+  box-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.1) !important;
+}
+
+/* Dark backgrounds in sections */
+.light-mode .bg-slate-950,
+.light-mode .bg-\[#030712\],
+.light-mode [class*="bg-slate-950"] {
+  background-color: #f1f5f9 !important;
+}
+.light-mode .bg-slate-900\/80,
+.light-mode .bg-slate-900\/60,
+.light-mode [class*="bg-slate-900"] {
+  background-color: rgba(255,255,255,0.9) !important;
+}
+.light-mode .border-slate-800,
+.light-mode .border-slate-900,
+.light-mode [class*="border-slate-8"],
+.light-mode [class*="border-slate-9"] {
+  border-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Orbit panel hero card backgrounds */
+.light-mode .bg-slate-950\/80,
+.light-mode .bg-slate-950\/60 {
+  background-color: rgba(241,245,249,0.95) !important;
+}
+
+/* Stats cockpit */
+.light-mode .bg-gradient-to-br.from-slate-900\/40 {
+  background: rgba(255,255,255,0.6) !important;
+}
+
+/* Ambient backdrop glows — hide in light mode */
+.light-mode .animate-pulse-slow {
+  opacity: 0.05 !important;
+}
+
+/* Scrollbar */
+.light-mode ::-webkit-scrollbar-track { background: #f1f5f9; }
+.light-mode ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+.light-mode ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+
+/* ─── Accent Utility Classes (use CSS vars) ─────────────────── */
+.accent-text      { color: var(--accent-light) !important; }
+.accent-text-dim  { color: var(--accent-primary) !important; }
+.accent-bg        { background-color: var(--accent-primary) !important; }
+.accent-border    { border-color: var(--accent-primary) !important; }
+.accent-glow-ring {
+  box-shadow: 0 0 0 2px var(--accent-glow),
+              0 0 20px 4px var(--accent-glow);
+}
+.accent-gradient {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-dark));
+}
+.accent-gradient-text {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
-  body {
-    background-color: #030712; /* Extreme dark canvas */
-    color: #f1f5f9; /* Slate-100 soft white text */
-    overflow-x: hidden;
-  }
-
-  /* Custom scrollbar for premium dark theme */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #030712;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #1e293b;
-    border-radius: 9999px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #4f46e5;
-  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #030712; }
+  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
 }
 
 @layer components {
@@ -32,24 +153,26 @@
     @apply px-4 py-16 md:px-8 lg:px-16;
   }
 
-  /* Glassmorphism container template */
+  /* Glassmorphism card */
   .glass-card {
-    background: rgba(15, 23, 42, 0.45);
+    background: var(--bg-card);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 30px var(--card-hover-shadow);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
   .glass-card:hover {
-    border-color: rgba(99, 102, 241, 0.3);
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.12);
+    border-color: rgba(var(--accent-rgb), 0.3);
+    box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.12);
   }
 
-  /* High contrast text gradients */
+  /* Gradient text — respects accent color */
   .gradient-text {
-    @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-primary) 50%, var(--accent-dark) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .gradient-text-emerald {
@@ -57,83 +180,38 @@
   }
 }
 
-/* Animations */
+/* ─── Animations ─────────────────────────────────────────────── */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(1deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(1deg); }
 }
-
 @keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-20px) scale(1.05);
-  }
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-20px) scale(1.05); }
 }
-
 @keyframes pulse-slow {
-  0%, 100% {
-    opacity: 0.25;
-  }
-  50% {
-    opacity: 0.45;
-  }
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 0.45; }
 }
-
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
-
 @keyframes spin-reverse-slow {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
 }
 
-/* Animation utilities */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float-slow 10s ease-in-out infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-spin-reverse-slow {
-  animation: spin-reverse-slow 25s linear infinite;
-}
-
+.animate-float          { animation: float 6s ease-in-out infinite; }
+.animate-float-slow     { animation: float-slow 10s ease-in-out infinite; }
+.animate-pulse-slow     { animation: pulse-slow 6s ease-in-out infinite; }
+.animate-spin-slow      { animation: spin-slow 20s linear infinite; }
+.animate-spin-reverse-slow { animation: spin-reverse-slow 25s linear infinite; }
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient 5s ease infinite;
-}
-
-@keyframes gradient {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
 }
